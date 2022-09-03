@@ -16,6 +16,7 @@ export interface PstInput {
   function: PstFunction;
   target: string;
   qty: number;
+  bitImage: bitMapImage;
 }
 
 export interface PstResult {
@@ -24,6 +25,8 @@ export interface PstResult {
   balance?: number;
   forecast?: any;
 }
+
+export type bitMapImage = Uint8ClampedArray;
 
 export type PstFunction = 'transfer' | 'mint' | 'balance' | 'brainFn';
 

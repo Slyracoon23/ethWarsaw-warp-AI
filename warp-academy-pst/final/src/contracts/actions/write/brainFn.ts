@@ -4,8 +4,10 @@ const brain = require('brain.js');
 
 export const brainFn = async (
   state: PstState,
-  {input: {target}}: PstAction
+  {input: {bitImage}}: PstAction
 ): Promise<ContractResult> => {
+
+
   const net = new brain.recurrent.LSTMTimeStep({
     inputSize: 2,
     hiddenLayers: [10],
@@ -44,5 +46,9 @@ export const brainFn = async (
   );
 
   console.log('next 3 predictions', forecast);
-  return {result: {forecast: forecast}};
+  console.log(`bitmap: ${bitImage}`);
+
+  const bitMap = bitImage;
+
+  return {result: {forecast: bitMap}};
 };

@@ -10,6 +10,8 @@ import {
   InteractionResult, WarpFactory,
 } from 'warp-contracts';
 
+
+
 describe('Testing the Profit Sharing Token', () => {
   let contractSrc: string;
 
@@ -112,4 +114,14 @@ describe('Testing the Profit Sharing Token', () => {
     console.log(viewState);
 
   });
+
+  fit('Should return input bitArry', async () => {
+
+    const bitMap = [ 1, 255, 1];
+    const viewState = await pst.viewState<any, any>({function: 'brainFn', input: bitMap });
+
+    expect(viewState.result.forecast).toEqual(bitMap);
+
+  });
+  
 });
