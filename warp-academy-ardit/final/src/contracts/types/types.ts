@@ -21,10 +21,13 @@ export interface ArditInput {
   function: ArditFunction;
   id: number;
   content: string;
+  onnxInput: number;
 }
 
 export type ArditResult = Message;
 
-export type ArditFunction = 'postMessage' | 'upvoteMessage' | 'downvoteMessage' | 'readMessage';
+export type OnnxResult = string;
 
-export type ContractResult = { state: ArditState } | { result: ArditResult };
+export type ArditFunction = 'postMessage' | 'upvoteMessage' | 'downvoteMessage' | 'readMessage' | 'runOnnx';
+
+export type ContractResult = { state: ArditState } | { result: ArditResult } | {result: OnnxResult};

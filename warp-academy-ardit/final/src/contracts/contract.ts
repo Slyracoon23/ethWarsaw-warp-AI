@@ -2,8 +2,9 @@ import { ContractResult, ArditAction, ArditResult, ArditState } from './types/ty
 import { downvoteMessage, upvoteMessage } from './actions/write/voting';
 import { postMessage } from './actions/write/postMessage';
 import { readMessage } from './actions/read/readMessage';
+import { runOnnx } from './actions/read/runOnnx';
 
-declare const ContractError;
+declare const ContractError: any;
 
 export async function handle(state: ArditState, action: ArditAction): Promise<ContractResult> {
   const input = action.input;
@@ -17,6 +18,8 @@ export async function handle(state: ArditState, action: ArditAction): Promise<Co
       return await downvoteMessage(state, action);
     case 'readMessage':
       return await readMessage(state, action);
+    case 'runOnnx':
+        return await runOnnx(state, action);
     default:
       throw new ContractError(`No function supplied or function not recognised: "${input.function}"`);
   }
